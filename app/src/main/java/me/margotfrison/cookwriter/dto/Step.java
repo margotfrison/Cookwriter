@@ -10,5 +10,5 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class Step {
-    private List<String> stepDescriptions;
+    private String stepDescriptions;
 }
