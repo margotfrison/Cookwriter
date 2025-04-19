@@ -9,13 +9,19 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import io.vavr.control.Try;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.margotfrison.cookwriter.R;
 import me.margotfrison.cookwriter.android.utils.AndroidResources;
+import me.margotfrison.cookwriter.exceptions.InvalidTimeFormatException;
 
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class DurationConverter {
+    @Getter
+    private static final DurationConverter instance = new DurationConverter();
+
     private static final String DELIMITER = " ";
 
     private static String SECONDS;
@@ -37,27 +43,42 @@ public class DurationConverter {
         );
     }
 
-    @TypeConverter
-    public Duration fromString(String str) {
+    public Duration parseString(String str) throws InvalidTimeFormatException {
         if (str == null)
-            return null;
+            throw new InvalidTimeFormatException(R.string.err_time_invalid_format, "null");
         loadResources();
         String[] durationsWithUnits = str.split(DELIMITER);
         Duration duration = Duration.ZERO;
         for (String durationWithUnit : durationsWithUnits) {
+            boolean validUnit = false;
             for (Map.Entry<String, TemporalUnit> durationEntry : DURATIONS.entrySet()) {
                 String durationLabel = durationEntry.getKey();
                 TemporalUnit durationTemporalUnit = durationEntry.getValue();
                 if (durationWithUnit.endsWith(durationLabel)) {
+                    String durationAmountStr = durationWithUnit.substring(0, durationWithUnit.length() - durationLabel.length());
                     try {
-                        String durationAmountStr = durationWithUnit.substring(0, durationWithUnit.length() - durationLabel.length());
                         duration = duration.plus(Integer.parseInt(durationAmountStr), durationTemporalUnit);
+                        validUnit = true;
                         break;
-                    } catch (NumberFormatException ignored) { }
+                    } catch (NumberFormatException e) {
+                        throw new InvalidTimeFormatException(R.string.err_time_invalid_format, str, e);
+                    }
                 }
+            }
+            if (!validUnit) {
+                throw new InvalidTimeFormatException(R.string.err_time_invalid_format, str);
             }
         }
         return duration;
+    }
+
+    @TypeConverter
+    public Duration fromString(String str) {
+        return Try.of(() -> parseString(str)).getOrNull();
+    }
+
+    public boolean checkString(String str) {
+        return Try.run(() -> parseString(str)).isFailure();
     }
 
     @TypeConverter

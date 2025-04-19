@@ -2,6 +2,7 @@
 <resources>
     <string name="err_quantity_invalid_fraction">Les quantités en fraction doivent s\'écrire de cette manière : nombre/nombre</string>
     <string name="err_quantity_invalid_integer">Les quantités entières doivent s\'écrire avec un nombre entier</string>
+    <string name="err_time_invalid_format">Le temps est mal formaté. Par exemple le format correct pour 1 jour, 3 heures et 20 minutes est : 1j 3h 20m</string>
     <string name="season_winter">Hiver</string>
     <string name="season_spring">Printemps</string>
     <string name="season_summer">Été</string>
@@ -29,16 +30,21 @@
     <string name="days_short">j</string>
     <string name="recipe_clean_name">Nom commun</string>
     <string name="recipe_clean_name_hint">Donnez un nom court à votre recette</string>
+    <string name="recipe_clean_name_error_empty">Le nom commun ne peut pas être vide</string>
     <string name="recipe_custom_name">Nom personnalisé</string>
     <string name="recipe_custom_name_hint">Donnez un joli nom à votre recette</string>
+    <string name="recipe_custom_name_error_empty">Le nom personnalisé ne peut pas être vide</string>
     <string name="recipe_description">Description</string>
     <string name="recipe_description_hint">Décrivez votre recette dans les grandes lignes</string>
     <string name="recipe_source">Source</string>
     <string name="recipe_source_hint">Donnez la source de votre recette</string>
     <string name="recipe_total_duration">Temps total</string>
     <string name="recipe_total_duration_hint">Indiquer le temps de réalisation de la recette</string>
+    <string name="recipe_total_duration_error_empty">Le temps total ne peut pas être vide</string>
+    <string name="recipe_total_duration_error_format">Le temps total est mal formé. Exemple : 1h 20m</string>
     <string name="recipe_season">Saison</string>
     <string name="recipe_difficulty">Difficulté</string>
     <string name="recipe_price">Prix</string>
+    <string name="recipe_error_missing_field">Un champ requis est vide ou incorrect</string>
     <string name="save">Enregistrer</string>
 </resources>

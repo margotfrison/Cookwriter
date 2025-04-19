@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">Cookwriter</string>
     <string name="err_quantity_invalid_fraction">Quantity in fraction must be in this form : number/number</string>
     <string name="err_quantity_invalid_integer">Whole quantity must be a whole number</string>
+    <string name="err_time_invalid_format">Time malformed. Correct format for example 1 day, 3 hours and 20 minutes is : 1d 3h 20m</string>
     <string name="season_winter">Winter</string>
     <string name="season_spring">Spring</string>
     <string name="season_summer">Summer</string>
@@ -29,16 +30,21 @@
     <string name="days_short">d</string>
     <string name="recipe_clean_name">Clean name</string>
     <string name="recipe_clean_name_hint">Give a short name to your recipe</string>
+    <string name="recipe_clean_name_error_empty">Clean name cannot be empty</string>
     <string name="recipe_custom_name">Custom name</string>
     <string name="recipe_custom_name_hint">Give a joyful name to your recipe</string>
+    <string name="recipe_custom_name_error_empty">Custom name cannot be empty</string>
     <string name="recipe_description">Description</string>
     <string name="recipe_description_hint">Give a description to your recipe</string>
     <string name="recipe_source">Source</string>
     <string name="recipe_source_hint">Give a source from where you took the recipe</string>
     <string name="recipe_total_duration">Total duration</string>
     <string name="recipe_total_duration_hint">Indicate the total duration of your recipe</string>
+    <string name="recipe_total_duration_error_empty">Total duration cannot be empty</string>
+    <string name="recipe_total_duration_error_format">Total duration in the wrong format. Example : 1h 20m</string>
     <string name="recipe_season">Season</string>
     <string name="recipe_difficulty">Difficulty</string>
     <string name="recipe_price">Price</string>
+    <string name="recipe_error_missing_field">A mandatory field is empty of incorrect</string>
     <string name="save">Save</string>
 </resources>
