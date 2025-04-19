@@ -26,15 +26,37 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
+    def room_version = "2.6.1"
 
+    // Android dependencies
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
     implementation libs.constraintlayout
+    implementation libs.navigation.fragment
+    implementation libs.navigation.ui
+
+    // Test dependencies
     testImplementation libs.junit
+    testImplementation libs.mockito.core
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+
+    // Lombok - a java annotation processor
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+
+    // Room - a SQLite layer
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava3:$room_version"
+
+    // Gson - a JSON parser
+    implementation libs.gson
 }
