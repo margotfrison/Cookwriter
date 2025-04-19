@@ -15,4 +15,14 @@
     <string name="list_seasons">Liste par saisons</string>
     <string name="labels">Par étiquettes</string>
     <string name="list_labels">Liste par étiquettes</string>
+    <string name="difficulty_brainless">Sans chichis</string>
+    <string name="difficulty_easy">Facile</string>
+    <string name="difficulty_normal">Normale</string>
+    <string name="difficulty_delicate">Délicate</string>
+    <string name="difficulty_expert">Experte</string>
+    <string name="price_free">Gratuit</string>
+    <string name="price_low_budget">Bon marché</string>
+    <string name="price_affordable">Raisonnable</string>
+    <string name="price_expensive">Cher</string>
+    <string name="price_top_of_the_shelf">Haut de gamme</string>
 </resources>

@@ -15,4 +15,14 @@
     <string name="list_seasons">List by seasons</string>
     <string name="labels">By labels</string>
     <string name="list_labels">List by labels</string>
+    <string name="difficulty_brainless">Brainless</string>
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_normal">Normal</string>
+    <string name="difficulty_delicate">Delicate</string>
+    <string name="difficulty_expert">Expert</string>
+    <string name="price_free">Free</string>
+    <string name="price_low_budget">Low budget</string>
+    <string name="price_affordable">Affordable</string>
+    <string name="price_expensive">Expensive</string>
+    <string name="price_top_of_the_shelf">Top of the shelf</string>
 </resources>
