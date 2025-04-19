@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Cookwriter</string>
+    <string name="app_name" translatable="false">Cookwriter</string>
+    <string name="err_quantity_invalid_fraction">Quantity in fraction must be in this form : number/number</string>
+    <string name="err_quantity_invalid_integer">Whole quantity must be a whole number</string>
+    <string name="season_winter">Winter</string>
+    <string name="season_spring">Spring</string>
+    <string name="season_summer">Summer</string>
+    <string name="season_autumn">Autumn</string>
+    <string name="season_all">All seasons</string>
+    <string name="recipes">Recipes</string>
+    <string name="list_recipes">List recipes</string>
+    <string name="categories">By categories</string>
+    <string name="list_categories">List categories</string>
+    <string name="seasons">By seasons</string>
+    <string name="list_seasons">List by seasons</string>
+    <string name="labels">By labels</string>
+    <string name="list_labels">List by labels</string>
 </resources>

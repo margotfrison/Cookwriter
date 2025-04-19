@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_quantity_invalid_fraction">Les quantités en fraction doivent s\'écrire de cette manière : nombre/nombre</string>
+    <string name="err_quantity_invalid_integer">Les quantités entières doivent s\'écrire avec un nombre entier</string>
+    <string name="season_winter">Hiver</string>
+    <string name="season_spring">Printemps</string>
+    <string name="season_summer">Été</string>
+    <string name="season_autumn">Automne</string>
+    <string name="season_all">Toutes saisons</string>
+    <string name="recipes">Recettes</string>
+    <string name="list_recipes">Liste des recettes</string>
+    <string name="categories">Par catégories</string>
+    <string name="list_categories">Liste des catégories</string>
+    <string name="seasons">Par saisons</string>
+    <string name="list_seasons">Liste par saisons</string>
+    <string name="labels">Par étiquettes</string>
+    <string name="list_labels">Liste par étiquettes</string>
+</resources>
