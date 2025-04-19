@@ -1,7 +1,7 @@
 package me.margotfrison.cookwriter.exceptions;
 
 import lombok.Getter;
-import me.margotfrison.cookwriter.utils.AndroidResources;
+import me.margotfrison.cookwriter.android.utils.AndroidResources;
 
 @Getter
 public class InvalidQuantityFormatException extends CookwriterException {
