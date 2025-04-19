@@ -45,6 +45,11 @@
     <string name="recipe_season">Saison</string>
     <string name="recipe_difficulty">Difficulté</string>
     <string name="recipe_price">Prix</string>
+    <string name="recipe_steps">Étapes</string>
+    <string name="recipe_step_number">Étape %d:</string>
+    <string name="recipe_step_description_hint">Que faire à cette étape ?</string>
+    <string name="recipe_step_delete_content_description">Supprimer cette étape</string>
+    <string name="recipe_add_step">Ajouter une étape</string>
     <string name="recipe_error_missing_field">Un champ requis est vide ou incorrect</string>
     <string name="save">Enregistrer</string>
 </resources>

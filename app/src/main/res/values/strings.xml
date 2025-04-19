@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name" translatable="false">Cookwriter</string>
-    <string name="err_quantity_invalid_fraction">Quantity in fraction must be in this form : number/number</string>
+    <string name="err_quantity_invalid_fraction">Quantity in fraction must be in this form: number/number</string>
     <string name="err_quantity_invalid_integer">Whole quantity must be a whole number</string>
-    <string name="err_time_invalid_format">Time malformed. Correct format for example 1 day, 3 hours and 20 minutes is : 1d 3h 20m</string>
+    <string name="err_time_invalid_format">Time malformed. Correct format for example 1 day, 3 hours and 20 minutes is: 1d 3h 20m</string>
     <string name="season_winter">Winter</string>
     <string name="season_spring">Spring</string>
     <string name="season_summer">Summer</string>
@@ -41,10 +41,15 @@
     <string name="recipe_total_duration">Total duration</string>
     <string name="recipe_total_duration_hint">Indicate the total duration of your recipe</string>
     <string name="recipe_total_duration_error_empty">Total duration cannot be empty</string>
-    <string name="recipe_total_duration_error_format">Total duration in the wrong format. Example : 1h 20m</string>
+    <string name="recipe_total_duration_error_format">Total duration in the wrong format. Example: 1h 20m</string>
     <string name="recipe_season">Season</string>
     <string name="recipe_difficulty">Difficulty</string>
     <string name="recipe_price">Price</string>
+    <string name="recipe_steps">Steps</string>
+    <string name="recipe_step_number">Step %d:</string>
+    <string name="recipe_step_description_hint">What to do in this step ?</string>
+    <string name="recipe_step_delete_content_description">Delete this step</string>
+    <string name="recipe_add_step">Add a step</string>
     <string name="recipe_error_missing_field">A mandatory field is empty of incorrect</string>
     <string name="save">Save</string>
 </resources>
