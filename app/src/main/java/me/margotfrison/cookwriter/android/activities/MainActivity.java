@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import me.margotfrison.cookwriter.R;
+import me.margotfrison.cookwriter.dto.Recipe;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button showRecipes;
@@ -31,7 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if ( v == showRecipes ) {
             startActivity(new Intent(this, RecipeListActivity.class));
         } else if ( v == writeRecipe ) {
-            startActivity(new Intent(this, RecipeWriteActivity.class));
+            Intent intent = new Intent(this, RecipeWriteActivity.class);
+            intent.putExtra(RecipeWriteActivity.NEW_RECIPE_EXTRA_KEY, true);
+            startActivity(intent);
         }
     }
 }

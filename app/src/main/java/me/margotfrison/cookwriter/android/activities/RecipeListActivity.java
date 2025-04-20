@@ -47,7 +47,7 @@ public class RecipeListActivity extends AppCompatActivity implements OnRecyclerC
 
     @Override
     public void onClick(Recipe recipePreview) {
-        Intent intent = new Intent(this, RecipeWriteActivity.class);
+        Intent intent = new Intent(this, RecipeReadonlyActivity.class);
         intent.putExtra(Recipe.Fields.author, recipePreview.getAuthor());
         intent.putExtra(Recipe.Fields.customName, recipePreview.getCustomName());
         startActivity(intent);
