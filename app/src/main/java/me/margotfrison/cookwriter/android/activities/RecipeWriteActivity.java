@@ -207,7 +207,7 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
         }
         if (totalDuration.getText().toString().isEmpty()) {
             totalDuration.setError(getString(R.string.recipe_total_duration_error_empty));
-        } else if (DurationConverter.getInstance().checkString(totalDuration.getText().toString())) {
+        } else if (!DurationConverter.getInstance().checkString(totalDuration.getText().toString())) {
             totalDuration.setError(getString(R.string.recipe_total_duration_error_format));
         }
     }
