@@ -16,6 +16,9 @@
             android:name=".android.activities.RecipeWriteActivity"
             android:exported="false" />
         <activity
+            android:name=".android.activities.RecipeReadonlyActivity"
+            android:exported="false" />
+        <activity
             android:name=".android.activities.RecipeListActivity"
             android:exported="false" />
         <activity

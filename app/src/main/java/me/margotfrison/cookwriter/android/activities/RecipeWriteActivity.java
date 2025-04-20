@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 import me.margotfrison.cookwriter.R;
 import me.margotfrison.cookwriter.android.App;
 import me.margotfrison.cookwriter.android.components.EditTextScrollable;
-import me.margotfrison.cookwriter.android.components.StepComponent;
+import me.margotfrison.cookwriter.android.components.StepWriteComponent;
 import me.margotfrison.cookwriter.dao.DaoUtil;
 import me.margotfrison.cookwriter.dao.DurationConverter;
 import me.margotfrison.cookwriter.dao.RecipeRepository;
@@ -37,6 +37,8 @@ import me.margotfrison.cookwriter.dto.Season;
 import me.margotfrison.cookwriter.dto.Step;
 
 public class RecipeWriteActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
+    public static final String NEW_RECIPE_EXTRA_KEY = "newRecipe";
+
     private Recipe originalRecipe;
     private ImageButton deleteRecipe;
     private EditText cleanName;
@@ -51,9 +53,9 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
     private Button addStep;
     private TextView error;
     private Button save;
-    private RecipeRepository recipeRepository;
 
-    private final List<StepComponent> stepList = new ArrayList<>();
+    private RecipeRepository recipeRepository;
+    private final List<StepWriteComponent> stepList = new ArrayList<>();
     private boolean disableTextWatch = false;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -65,6 +67,7 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
 
         String recipePreviewAuthor = getIntent().getStringExtra(Recipe.Fields.author);
         String recipePreviewCustomName = getIntent().getStringExtra(Recipe.Fields.customName);
+        Boolean isNewRecipe = getIntent().getBooleanExtra(NEW_RECIPE_EXTRA_KEY, false);
 
         deleteRecipe = findViewById(R.id.delete_recipe);
         cleanName = findViewById(R.id.clean_name);
@@ -91,6 +94,10 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
         price.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Price.values()));
         addStep.setOnClickListener(this);
         save.setOnClickListener(this);
+
+        if (!isNewRecipe) {
+            customName.setEnabled(false);
+        }
 
         if (recipePreviewAuthor != null && recipePreviewCustomName != null) {
             disableTextWatch = true;
@@ -128,18 +135,18 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
 
     private void addStep(@Nullable Step step) {
         final int stepIndex = stepList.size();
-        StepComponent stepComponent = new StepComponent(this,
+        StepWriteComponent stepWriteComponent = new StepWriteComponent(this,
                 stepIndex,
                 Optional.ofNullable(step).map(Step::getStepDescriptions).orElse(null),
                 this::deleteStep);
-        stepList.add(stepComponent);
-        steps.addView(stepComponent, stepIndex);
+        stepList.add(stepWriteComponent);
+        steps.addView(stepWriteComponent, stepIndex);
     }
 
     private void deleteStep(int index) {
-        StepComponent stepComponent = (StepComponent) steps.getChildAt(index);
-        steps.removeView(stepComponent);
-        stepList.remove(stepComponent);
+        StepWriteComponent stepWriteComponent = (StepWriteComponent) steps.getChildAt(index);
+        steps.removeView(stepWriteComponent);
+        stepList.remove(stepWriteComponent);
         for (int i = 0; i < stepList.size(); i++) {
             stepList.get(i).setIndex(i);
         }
@@ -165,7 +172,7 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
                         .difficulty((Difficulty) difficulty.getSelectedItem())
                         .price((Price) price.getSelectedItem())
                         .steps(stepList.stream()
-                                .map(StepComponent::getDescription)
+                                .map(StepWriteComponent::getDescription)
                                 .map(EditText::getText)
                                 .filter(Predicate.not(Objects::isNull))
                                 .map(Objects::toString)

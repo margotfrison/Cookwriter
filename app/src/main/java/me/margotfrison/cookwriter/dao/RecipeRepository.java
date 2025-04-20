@@ -32,4 +32,7 @@ public interface RecipeRepository {
 
     @Delete
     Completable delete(Recipe recipe);
+
+    @Query("SELECT EXISTS(SELECT * FROM recipe WHERE author = :previewRecipeAuthor AND customName = :previewRecipeCustomName)")
+    Single<Boolean> exists(String previewRecipeAuthor, String previewRecipeCustomName);
 }

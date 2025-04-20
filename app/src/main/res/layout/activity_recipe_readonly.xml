@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".android.activities.RecipeWriteActivity">
+    tools:context=".android.activities.RecipeReadonlyActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -15,7 +15,7 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:title="@string/recipes_write">
+        app:title="@string/recipes_readonly">
 
         <ImageButton
             android:id="@+id/delete_recipe"
@@ -24,9 +24,9 @@
             android:layout_gravity="end"
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"
-            android:contentDescription="@string/recipes_delete_content_description"
+            android:contentDescription="@string/recipes_edit_content_description"
             android:padding="10dp"
-            android:src="@drawable/baseline_delete_24" />
+            android:src="@drawable/baseline_create_24" />
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
@@ -45,13 +45,10 @@
                 android:text="@string/recipe_clean_name"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/clean_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:hint="@string/recipe_clean_name_hint"
-                android:inputType="text" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -59,13 +56,10 @@
                 android:text="@string/recipe_custom_name"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/custom_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:hint="@string/recipe_custom_name_hint"
-                android:inputType="text" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -73,17 +67,10 @@
                 android:text="@string/recipe_description"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:gravity="start"
-                android:hint="@string/recipe_description_hint"
-                android:inputType="textMultiLine"
-                android:lines="3"
-                android:maxLines="3"
-                android:minLines="3"
                 android:scrollbars="vertical" />
 
             <TextView
@@ -92,13 +79,10 @@
                 android:text="@string/recipe_source"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/source"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:hint="@string/recipe_source_hint"
-                android:inputType="text" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -106,13 +90,10 @@
                 android:text="@string/recipe_total_duration"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:id="@+id/total_duration"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:hint="@string/recipe_total_duration_hint"
-                android:inputType="text" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -120,7 +101,7 @@
                 android:text="@string/recipe_season"
                 android:textStyle="bold" />
 
-            <Spinner
+            <TextView
                 android:id="@+id/season"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -131,7 +112,7 @@
                 android:text="@string/recipe_difficulty"
                 android:textStyle="bold" />
 
-            <Spinner
+            <TextView
                 android:id="@+id/difficulty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -142,7 +123,7 @@
                 android:text="@string/recipe_price"
                 android:textStyle="bold" />
 
-            <Spinner
+            <TextView
                 android:id="@+id/price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -158,27 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/add_step"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/recipe_add_step" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/error_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/error_red"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/save" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
