@@ -10,6 +10,9 @@ import java.util.List;
 import me.margotfrison.cookwriter.dto.Ingredient;
 import me.margotfrison.cookwriter.dto.Step;
 
+/**
+ * Util class used by the database framework to store {@link List}s
+ */
 public class ListConverter {
     @TypeConverter
     public String fromStringList(List<String> list) {

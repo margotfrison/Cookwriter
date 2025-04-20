@@ -14,6 +14,9 @@ import lombok.AllArgsConstructor;
 import me.margotfrison.cookwriter.R;
 import me.margotfrison.cookwriter.dto.Recipe;
 
+/**
+ * An {@link RecyclerView.Adapter} to hold and display a list of {@link Recipe}
+ */
 @AllArgsConstructor
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.ViewHolder> {
     private final List<Recipe> recipes;

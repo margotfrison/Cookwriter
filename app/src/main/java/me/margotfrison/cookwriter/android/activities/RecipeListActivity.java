@@ -17,6 +17,9 @@ import me.margotfrison.cookwriter.dao.DaoUtil;
 import me.margotfrison.cookwriter.dao.RecipeRepository;
 import me.margotfrison.cookwriter.dto.Recipe;
 
+/**
+ * {@link AppCompatActivity} to list recipes in the database
+ */
 public class RecipeListActivity extends AppCompatActivity implements OnRecyclerClickListener<Recipe>, View.OnClickListener {
     private ImageButton createRecipe;
     private RecyclerView recyclerView;

@@ -3,6 +3,9 @@ package me.margotfrison.cookwriter.exceptions;
 import lombok.Getter;
 import me.margotfrison.cookwriter.android.utils.AndroidResources;
 
+/**
+ * Means the {@link java.time.Duration} could not the parsed from a {@link String}
+ */
 @Getter
 public class InvalidTimeFormatException extends CookwriterException {
     private final int errorDescription;

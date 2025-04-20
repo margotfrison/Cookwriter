@@ -11,6 +11,9 @@ import android.widget.TextView;
 import lombok.Getter;
 import me.margotfrison.cookwriter.R;
 
+/**
+ * A {@link LinearLayout} component to display a {@link me.margotfrison.cookwriter.dto.Step}. Editable and deletable
+ */
 @SuppressLint("ViewConstructor")
 @Getter
 public class StepWriteComponent extends LinearLayout implements View.OnClickListener {
@@ -39,6 +42,11 @@ public class StepWriteComponent extends LinearLayout implements View.OnClickList
         deleteStep.setOnClickListener(this);
     }
 
+    /**
+     * Used to modify its index in the list using multiple {@link StepWriteComponent}.
+     * Also change the number {@link TextView}
+     * @param index the new index
+     */
     public void setIndex(int index) {
         this.index = index;
         number.setText(getResources().getString(R.string.recipe_step_number, index + 1));

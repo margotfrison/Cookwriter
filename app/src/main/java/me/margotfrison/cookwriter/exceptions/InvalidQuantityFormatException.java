@@ -3,6 +3,9 @@ package me.margotfrison.cookwriter.exceptions;
 import lombok.Getter;
 import me.margotfrison.cookwriter.android.utils.AndroidResources;
 
+/**
+ * Means the quality could not be parsed from a {@link String}
+ */
 @Getter
 public class InvalidQuantityFormatException extends CookwriterException {
     private final int errorDescription;
