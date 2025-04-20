@@ -78,7 +78,7 @@ public class DurationConverter {
     }
 
     public boolean checkString(String str) {
-        return Try.run(() -> parseString(str)).isFailure();
+        return !Try.run(() -> parseString(str)).isFailure();
     }
 
     @TypeConverter
