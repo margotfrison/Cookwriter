@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Action;
@@ -17,25 +18,26 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class DaoUtil {
     private final static Map<Object, List<Disposable>> DISPOSABLES = new HashMap<>();
+    private final static Scheduler SCHEDULER = Schedulers.io();
 
     public static <T> void subscribe(Single<T> single, Consumer<? super T> consumer, Object issuer) {
-        registerDisposable(issuer, single.subscribeOn(Schedulers.io()).subscribe(consumer));
+        registerDisposable(issuer, single.subscribeOn(SCHEDULER).subscribe(consumer));
     }
 
     public static void subscribe(Completable completable, Action runnable, Object issuer) {
-        registerDisposable(issuer, completable.subscribeOn(Schedulers.io()).subscribe(runnable));
+        registerDisposable(issuer, completable.subscribeOn(SCHEDULER).subscribe(runnable));
     }
 
     public static <T> void subscribeUIThread(Single<T> single, Consumer<? super T> consumer, Activity issuer) {
-        registerDisposable(issuer, single.subscribeOn(Schedulers.io()).subscribe((result) -> {
-                            issuer.runOnUiThread(() -> {
-                                try {
-                                    consumer.accept(result);
-                                } catch (Throwable e) {
-                                    throw new RuntimeException(e);
-                                }
-                            });
-                        }));
+        registerDisposable(issuer, single.subscribeOn(SCHEDULER).subscribe((result) -> {
+            issuer.runOnUiThread(() -> {
+                try {
+                    consumer.accept(result);
+                } catch (Throwable e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }));
     }
 
     public static void disposeAll(Object issuer) {

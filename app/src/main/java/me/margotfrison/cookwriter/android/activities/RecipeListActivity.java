@@ -16,6 +16,7 @@ import me.margotfrison.cookwriter.dao.RecipeRepository;
 import me.margotfrison.cookwriter.dto.Recipe;
 
 public class RecipeListActivity extends AppCompatActivity implements OnRecyclerClickListener<Recipe> {
+    private RecipeRepository recipeRepository;
     private RecyclerView recyclerView;
 
     @Override
@@ -25,9 +26,14 @@ public class RecipeListActivity extends AppCompatActivity implements OnRecyclerC
         setSupportActionBar(findViewById(R.id.toolbar));
 
         recyclerView = findViewById(R.id.recycler_view);
-        RecipeRepository recipeRepository = App.getDatabase().recipeRepository();
+        recipeRepository = App.getDatabase().recipeRepository();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         DaoUtil.subscribeUIThread(recipeRepository.getAllAsPreview(),
                 (recipes) -> recyclerView.setAdapter(new RecipeListAdapter(recipes, this)),
                 this);
