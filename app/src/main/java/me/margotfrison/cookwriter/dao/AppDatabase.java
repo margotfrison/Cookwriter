@@ -6,6 +6,9 @@ import androidx.room.migration.Migration;
 
 import me.margotfrison.cookwriter.dto.Recipe;
 
+/**
+ * Standard {@link RoomDatabase} database
+ */
 @Database(entities = {Recipe.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract RecipeRepository recipeRepository();

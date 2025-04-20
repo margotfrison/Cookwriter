@@ -36,6 +36,10 @@ import me.margotfrison.cookwriter.dto.Recipe;
 import me.margotfrison.cookwriter.dto.Season;
 import me.margotfrison.cookwriter.dto.Step;
 
+
+/**
+ * {@link AppCompatActivity} to create, edit or delete a recipe into the database
+ */
 public class RecipeWriteActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
     public static final String NEW_RECIPE_EXTRA_KEY = "newRecipe";
 
@@ -67,7 +71,7 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
 
         String recipePreviewAuthor = getIntent().getStringExtra(Recipe.Fields.author);
         String recipePreviewCustomName = getIntent().getStringExtra(Recipe.Fields.customName);
-        Boolean isNewRecipe = getIntent().getBooleanExtra(NEW_RECIPE_EXTRA_KEY, false);
+        boolean isNewRecipe = getIntent().getBooleanExtra(NEW_RECIPE_EXTRA_KEY, false);
 
         deleteRecipe = findViewById(R.id.delete_recipe);
         cleanName = findViewById(R.id.clean_name);
@@ -99,6 +103,7 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
             customName.setEnabled(false);
         }
 
+        // Populate EditViews if a recipe id was given (we want to edit a recipe)
         if (recipePreviewAuthor != null && recipePreviewCustomName != null) {
             disableTextWatch = true;
             DaoUtil.subscribeUIThread(
@@ -133,6 +138,10 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
         addStep(null);
     }
 
+    /**
+     * Add a {@link Step} in the stepList and a {@link StepWriteComponent} to the step {@link LinearLayout}
+     * @param step the {@link Step} to add to the lists
+     */
     private void addStep(@Nullable Step step) {
         final int stepIndex = stepList.size();
         StepWriteComponent stepWriteComponent = new StepWriteComponent(this,
@@ -143,6 +152,10 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
         steps.addView(stepWriteComponent, stepIndex);
     }
 
+    /**
+     * Remove a {@link Step} from the stepList and the {@link StepWriteComponent} to the step {@link LinearLayout}
+     * @param index the index of the step to remove
+     */
     private void deleteStep(int index) {
         StepWriteComponent stepWriteComponent = (StepWriteComponent) steps.getChildAt(index);
         steps.removeView(stepWriteComponent);
@@ -155,12 +168,15 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if (v == save) {
+            // We check any EditText have errors
             if (cleanName.getError() != null
                     || customName.getError() != null
                     || totalDuration.getError() != null) {
+                // We display a message in case of any errors
                 error.setText(R.string.recipe_error_missing_field);
                 error.setVisibility(View.VISIBLE);
             } else {
+                // Save the recipe to the database
                 Recipe recipe = Recipe.builder()
                         .author("TBD")
                         .cleanName(cleanName.getText().toString())
@@ -185,9 +201,12 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
         } else if (v == addStep) {
             addStep();
         } else if (v == deleteRecipe) {
+            // If it is a recipe creation, originalRecipe == null. Else, it's a recipe edition
             if (originalRecipe != null) {
+                // We delete the recipe because it's a recipe edition
                 DaoUtil.subscribe(recipeRepository.delete(originalRecipe), this::finish, this);
             } else {
+                // We simply close the activity because it's a recipe creation
                 finish();
             }
         }
@@ -195,6 +214,7 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void afterTextChanged(Editable s) {
+        // Here we run tests to see if data in EditTexts are valid
         if (disableTextWatch) {
             return;
         }

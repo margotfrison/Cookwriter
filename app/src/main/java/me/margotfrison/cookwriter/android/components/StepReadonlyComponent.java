@@ -8,6 +8,9 @@ import android.widget.TextView;
 import lombok.Getter;
 import me.margotfrison.cookwriter.R;
 
+/**
+ * A {@link LinearLayout} component to display a {@link me.margotfrison.cookwriter.dto.Step}. Readonly
+ */
 @SuppressLint("ViewConstructor")
 @Getter
 public class StepReadonlyComponent extends LinearLayout {

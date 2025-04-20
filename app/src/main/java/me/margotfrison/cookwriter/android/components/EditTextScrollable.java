@@ -6,6 +6,9 @@ import android.view.View;
 
 import lombok.AllArgsConstructor;
 
+/**
+ * {@link View.OnTouchListener} designed to allow an EditText to be scrollable even inside a scrollable layout
+ */
 @AllArgsConstructor
 public class EditTextScrollable implements View.OnTouchListener {
     private final int id;

@@ -9,6 +9,9 @@ import androidx.room.Room;
 import lombok.Getter;
 import me.margotfrison.cookwriter.dao.AppDatabase;
 
+/**
+ * {@link Application} class, used to initiate the database framework and give a static {@link Context}
+ */
 public class App extends Application {
     @SuppressLint("StaticFieldLeak")
     @Getter

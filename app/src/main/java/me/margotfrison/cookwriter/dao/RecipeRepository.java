@@ -13,6 +13,9 @@ import io.reactivex.rxjava3.core.Single;
 import me.margotfrison.cookwriter.dto.Recipe;
 import me.margotfrison.cookwriter.dto.Season;
 
+/**
+ * {@link Recipe} queries for the database
+ */
 @Dao
 public interface RecipeRepository {
     @Query("SELECT * FROM recipe WHERE author = :previewRecipeAuthor AND customName = :previewRecipeCustomName")

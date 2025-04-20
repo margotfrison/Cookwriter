@@ -23,6 +23,9 @@ import me.margotfrison.cookwriter.dao.RecipeRepository;
 import me.margotfrison.cookwriter.dto.Recipe;
 import me.margotfrison.cookwriter.dto.Step;
 
+/**
+ * {@link AppCompatActivity} to show a recipe readonly from the database
+ */
 public class RecipeReadonlyActivity extends AppCompatActivity implements View.OnClickListener {
     private Recipe recipe;
     private ImageButton editRecipe;
@@ -67,11 +70,14 @@ public class RecipeReadonlyActivity extends AppCompatActivity implements View.On
         String recipePreviewAuthor = getIntent().getStringExtra(Recipe.Fields.author);
         String recipePreviewCustomName = getIntent().getStringExtra(Recipe.Fields.customName);
 
+        // Populate TextViews if a recipe id was given and if the recipe exist in database
         if (recipePreviewAuthor != null && recipePreviewCustomName != null) {
+            // Recipe must exist
             DaoUtil.subscribeUIThread(
                     recipeRepository.exists(recipePreviewAuthor, recipePreviewCustomName),
                     (exists) -> {
                         if (exists) {
+                            // Populate TextViews with recipe infos
                             DaoUtil.subscribeUIThread(
                                     recipeRepository.get(recipePreviewAuthor, recipePreviewCustomName),
                                     (recipe) -> {
@@ -101,6 +107,10 @@ public class RecipeReadonlyActivity extends AppCompatActivity implements View.On
         DaoUtil.disposeAll(this);
     }
 
+    /**
+     * Populate the steps {@link LinearLayout} with {@link StepReadonlyComponent}
+     * @param stepList the list of {@link Step}s
+     */
     private void addSteps(@Nullable List<Step> stepList) {
         if (stepList == null) {
             return;
