@@ -2,6 +2,8 @@ package me.margotfrison.cookwriter.android.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,9 +17,11 @@ import me.margotfrison.cookwriter.dao.DaoUtil;
 import me.margotfrison.cookwriter.dao.RecipeRepository;
 import me.margotfrison.cookwriter.dto.Recipe;
 
-public class RecipeListActivity extends AppCompatActivity implements OnRecyclerClickListener<Recipe> {
-    private RecipeRepository recipeRepository;
+public class RecipeListActivity extends AppCompatActivity implements OnRecyclerClickListener<Recipe>, View.OnClickListener {
+    private ImageButton createRecipe;
     private RecyclerView recyclerView;
+
+    private RecipeRepository recipeRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +29,11 @@ public class RecipeListActivity extends AppCompatActivity implements OnRecyclerC
         setContentView(R.layout.activity_recipe_list);
         setSupportActionBar(findViewById(R.id.toolbar));
 
+        createRecipe = findViewById(R.id.create_recipe);
         recyclerView = findViewById(R.id.recycler_view);
         recipeRepository = App.getDatabase().recipeRepository();
 
+        createRecipe.setOnClickListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -51,5 +57,14 @@ public class RecipeListActivity extends AppCompatActivity implements OnRecyclerC
         intent.putExtra(Recipe.Fields.author, recipePreview.getAuthor());
         intent.putExtra(Recipe.Fields.customName, recipePreview.getCustomName());
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == createRecipe) {
+            Intent intent = new Intent(this, RecipeWriteActivity.class);
+            intent.putExtra(RecipeWriteActivity.NEW_RECIPE_EXTRA_KEY, true);
+            startActivity(intent);
+        }
     }
 }

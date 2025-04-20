@@ -26,6 +26,7 @@
     <string name="recipes_readonly">Recipe viewer</string>
     <string name="recipes_delete_content_description">Delete this recipe</string>
     <string name="recipes_edit_content_description">Edit this recipe</string>
+    <string name="recipes_create_content_description">Create a recipe</string>
     <string name="by">by</string>
     <string name="seconds_short">s</string>
     <string name="minutes_short">m</string>
