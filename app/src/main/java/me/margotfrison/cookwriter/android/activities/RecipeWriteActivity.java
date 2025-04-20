@@ -4,11 +4,11 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,6 +37,8 @@ import me.margotfrison.cookwriter.dto.Season;
 import me.margotfrison.cookwriter.dto.Step;
 
 public class RecipeWriteActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher {
+    private Recipe originalRecipe;
+    private ImageButton deleteRecipe;
     private EditText cleanName;
     private EditText customName;
     private EditText description;
@@ -64,6 +66,7 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
         String recipePreviewAuthor = getIntent().getStringExtra(Recipe.Fields.author);
         String recipePreviewCustomName = getIntent().getStringExtra(Recipe.Fields.customName);
 
+        deleteRecipe = findViewById(R.id.delete_recipe);
         cleanName = findViewById(R.id.clean_name);
         customName = findViewById(R.id.custom_name);
         description = findViewById(R.id.description);
@@ -78,10 +81,10 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
         save = findViewById(R.id.save);
         recipeRepository = App.getDatabase().recipeRepository();
 
+        deleteRecipe.setOnClickListener(this);
         cleanName.addTextChangedListener(this);
         customName.addTextChangedListener(this);
         totalDuration.addTextChangedListener(this);
-
         description.setOnTouchListener(new EditTextScrollable(R.id.description));
         season.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Season.values()));
         difficulty.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Difficulty.values()));
@@ -94,6 +97,7 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
             DaoUtil.subscribeUIThread(
                     recipeRepository.get(recipePreviewAuthor, recipePreviewCustomName),
                     (recipe) -> {
+                        originalRecipe = recipe;
                         cleanName.setText(recipe.getCleanName());
                         customName.setText(recipe.getCustomName());
                         description.setText(recipe.getDescription());
@@ -173,6 +177,12 @@ public class RecipeWriteActivity extends AppCompatActivity implements View.OnCli
             }
         } else if (v == addStep) {
             addStep();
+        } else if (v == deleteRecipe) {
+            if (originalRecipe != null) {
+                DaoUtil.subscribe(recipeRepository.delete(originalRecipe), this::finish, this);
+            } else {
+                finish();
+            }
         }
     }
 

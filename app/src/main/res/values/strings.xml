@@ -23,6 +23,7 @@
     <string name="price_top_of_the_shelf">Top of the shelf</string>
     <string name="recipes_list">Recipes list</string>
     <string name="recipes_write">Write a recipe</string>
+    <string name="recipes_delete_content_description">Delete this recipe</string>
     <string name="by">by</string>
     <string name="seconds_short">s</string>
     <string name="minutes_short">m</string>
