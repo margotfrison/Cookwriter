@@ -23,8 +23,8 @@ This project aims to provide a solution to theses problems, which motivate me th
 
 ## Installation
 
-APK files are available in releases but there are not signed (yet ?). Don't forget to allow unknown
-sources in your Android system or browser app settings.
+APK files are available in releases. Don't forget to allow unknown sources in your Android system or
+browser app settings.
 
 Android 12 (API level 31) or later is required.
 
